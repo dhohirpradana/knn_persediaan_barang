@@ -4,30 +4,15 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:persediaan_barang/databases/db_helper.dart';
-import 'package:persediaan_barang/getx/k.dart';
-import 'package:persediaan_barang/getx/knn/knn.dart';
 import 'package:persediaan_barang/getx/selected_stok_get.dart';
 import 'package:persediaan_barang/getx/stok_get.dart';
 import 'add_stok_page.dart';
-
-final _key = GlobalKey<FormState>();
-final _controller = TextEditingController();
 
 class SettingPage extends StatelessWidget {
   SettingPage({Key? key}) : super(key: key);
 
   final selectedStokController = Get.put(SelectedstokController());
-  final kController = Get.put(KController());
-  final knnController = Get.put(KNNController());
   final _helper = DbHelper();
-
-  void simpanK() {
-    if (_key.currentState!.validate()) {
-      kController.updateK(int.parse(_controller.text));
-      knnController.resetHasil();
-      selectedStokController.updateSelected(null, null);
-    }
-  }
 
   final stokController = Get.put(StokController());
 
@@ -45,61 +30,6 @@ class SettingPage extends StatelessWidget {
         padding: const EdgeInsets.all(10),
         child: Column(
           children: [
-            Form(
-              key: _key,
-              child: Column(
-                children: [
-                  Container(
-                    width: double.infinity,
-                    height: 60,
-                    decoration: BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.circular(5)),
-                    child: Center(
-                      child: GetBuilder<KController>(
-                        builder: (controller) => TextFormField(
-                          autofocus: false,
-                          controller: _controller,
-                          validator: (value) {
-                            if (kController.k.toString() == value) {
-                              return '    tidak ada perubahan nilai k';
-                            } else if (value == '') {
-                              return '    tidak boleh kosong';
-                            } else if (value == '0') {
-                              return '    tidak boleh nol';
-                            } else if (value![0] == '0') {
-                              return '    tidak boleh berawalah nol';
-                            }
-                            return null;
-                          },
-                          keyboardType: TextInputType.number,
-                          textInputAction: TextInputAction.done,
-                          decoration: const InputDecoration(
-                              prefixIcon: Icon(
-                                  CupertinoIcons.number_square_fill,
-                                  color: Colors.grey),
-                              hintText: 'Nilai K',
-                              border: InputBorder.none),
-                        ),
-                      ),
-                    ),
-                  ),
-                  const SizedBox(height: 10),
-                  ElevatedButton(
-                    style: ButtonStyle(
-                        backgroundColor: MaterialStateProperty.all(Colors.blue),
-                        minimumSize:
-                            MaterialStateProperty.all(Size(Get.width, 40))),
-                    onPressed: () async {
-                      FocusScope.of(context).unfocus();
-                      await Future.delayed(const Duration(milliseconds: 300));
-                      simpanK();
-                    },
-                    child: const Text('SIMPAN NILAI K'),
-                  ),
-                ],
-              ),
-            ),
             const Text('DATA VARIASI STOK',
                 style: TextStyle(color: Colors.black54)),
             Expanded(

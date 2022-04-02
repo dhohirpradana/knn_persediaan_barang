@@ -1,12 +1,12 @@
 import 'dart:convert';
 
-class Penjualan {
+class Persediaan {
   final int? id;
   final int idStok;
   final int qty;
   final int bulan;
   final int tahun;
-  Penjualan({
+  Persediaan({
     this.id,
     required this.idStok,
     required this.qty,
@@ -14,14 +14,14 @@ class Penjualan {
     required this.tahun,
   });
 
-  Penjualan copyWith({
+  Persediaan copyWith({
     int? id,
     int? idStok,
     int? qty,
     int? bulan,
     int? tahun,
   }) {
-    return Penjualan(
+    return Persediaan(
       id: id ?? this.id,
       idStok: idStok ?? this.idStok,
       qty: qty ?? this.qty,
@@ -40,8 +40,8 @@ class Penjualan {
     };
   }
 
-  factory Penjualan.fromMap(Map<String, dynamic> map) {
-    return Penjualan(
+  factory Persediaan.fromMap(Map<String, dynamic> map) {
+    return Persediaan(
       id: map['id']?.toInt(),
       idStok: map['idStok']?.toInt() ?? 0,
       qty: map['qty']?.toInt() ?? 0,
@@ -52,19 +52,19 @@ class Penjualan {
 
   String toJson() => json.encode(toMap());
 
-  factory Penjualan.fromJson(String source) =>
-      Penjualan.fromMap(json.decode(source));
+  factory Persediaan.fromJson(String source) =>
+      Persediaan.fromMap(json.decode(source));
 
   @override
   String toString() {
-    return 'Penjualan(id: $id, idStok: $idStok, qty: $qty, bulan: $bulan, tahun: $tahun)';
+    return 'Persediaan(id: $id, idStok: $idStok, qty: $qty, bulan: $bulan, tahun: $tahun)';
   }
 
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) return true;
 
-    return other is Penjualan &&
+    return other is Persediaan &&
         other.id == id &&
         other.idStok == idStok &&
         other.qty == qty &&

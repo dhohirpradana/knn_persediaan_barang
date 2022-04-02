@@ -4,7 +4,7 @@ import 'package:get/get.dart';
 import 'package:persediaan_barang/databases/db_helper.dart';
 import 'package:persediaan_barang/getx/knn/knn.dart';
 import 'package:persediaan_barang/getx/stok_get.dart';
-import 'package:persediaan_barang/models/penjualan.dart';
+import 'package:persediaan_barang/models/persediaan.dart';
 
 class AddTrainingPage extends StatefulWidget {
   const AddTrainingPage({Key? key}) : super(key: key);
@@ -30,12 +30,12 @@ class _AddTrainingPageState extends State<AddTrainingPage> {
 
   void insert() {
     if (_selectedStok != null && _selectedBulan != null) {
-      _helper.insertPenjualan(Penjualan(
+      _helper.insertPersediaan(Persediaan(
           bulan: _selectedBulan!,
           idStok: _selectedStok!,
           tahun: int.parse(_tahunController.text),
           qty: int.parse(_jumlahController.text)));
-      _helper.getDataPenjualan();
+      _helper.getDataPersediaan();
       knnControler.resetHasil();
       setState(() {
         _jumlahController.clear();

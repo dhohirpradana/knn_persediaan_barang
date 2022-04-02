@@ -1,7 +1,7 @@
 import 'dart:math';
 import 'package:get/get.dart';
-import 'package:persediaan_barang/getx/penjualan_get.dart';
-import 'package:persediaan_barang/models/penjualan.dart';
+import 'package:persediaan_barang/getx/persediaan_get.dart';
+import 'package:persediaan_barang/models/persediaan.dart';
 import '../k.dart';
 
 class KNNController extends GetxController {
@@ -71,7 +71,7 @@ class KNNController extends GetxController {
       sum = sum + targetList[edList[i]['index']];
     }
     res = (sum / k).floor();
-    filteredPenjualan.add(Penjualan(
+    filteredPenjualan.add(Persediaan(
         idStok: 0, qty: (sum / kController.k).floor(), bulan: 0, tahun: 0));
   }
 

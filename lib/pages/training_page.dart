@@ -2,8 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:persediaan_barang/databases/db_helper.dart';
-import 'package:persediaan_barang/getx/penjualan_get.dart';
-import 'package:persediaan_barang/models/penjualan_select.dart';
+import 'package:persediaan_barang/getx/persediaan_get.dart';
+import 'package:persediaan_barang/models/persediaan_select.dart';
 import 'package:persediaan_barang/widgets/nama_bulan.dart';
 import 'add_training_page.dart';
 
@@ -23,7 +23,7 @@ class _TrainingPageState extends State<TrainingPage> {
 
   @override
   Widget build(BuildContext context) {
-    _helper.getDataPenjualan();
+    _helper.getDataPersediaan();
     return Scaffold(
       backgroundColor: CupertinoColors.systemGrey5,
       appBar: AppBar(
@@ -59,7 +59,7 @@ class _TrainingPageState extends State<TrainingPage> {
                   ),
                 ),
               )
-            : const Text('PENJUALAN'),
+            : const Text('PERSEDIAAN'),
         actions: [
           (isSearch == false)
               ? IconButton(
@@ -75,7 +75,7 @@ class _TrainingPageState extends State<TrainingPage> {
       ),
       body: GetBuilder<PenjualanController>(
         builder: (context) {
-          List<PenjualanSelect> data = penjualanController.filteredPenjualan;
+          List<PersediaanSelect> data = penjualanController.filteredPenjualan;
           return ListView.builder(
             itemCount: data.length,
             itemBuilder: (BuildContext context, index) {

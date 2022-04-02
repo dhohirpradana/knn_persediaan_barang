@@ -11,11 +11,8 @@ class FoundationPage extends StatelessWidget {
 
   final _controller = PersistentTabController(initialIndex: 0);
 
-  // final DbHelper _helper = DbHelper();
   @override
   Widget build(BuildContext context) {
-    // _helper.insert(StokQuery.tabelName,
-    //     Stok(nama: 'SEMEN GRESIK 50 Kg', kode: '10110010').toMap());
     return SafeArea(
       child: PersistentTabView(
         context,
@@ -50,7 +47,7 @@ class FoundationPage extends StatelessWidget {
 
   List<Widget> _buildScreens() {
     return [
-      HomePage(),
+      const HomePage(),
       const TrainingPage(),
       SettingPage(),
       const AboutPage(),

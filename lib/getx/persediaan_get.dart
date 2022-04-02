@@ -1,17 +1,17 @@
 import 'package:get/state_manager.dart';
-import 'package:persediaan_barang/models/penjualan.dart';
-import 'package:persediaan_barang/models/penjualan_select.dart';
+import 'package:persediaan_barang/models/persediaan.dart';
+import 'package:persediaan_barang/models/persediaan_select.dart';
 import 'package:persediaan_barang/widgets/nama_bulan.dart';
 
 class PenjualanController extends GetxController {
-  List<Penjualan> penjualanList1 = [];
-  List<PenjualanSelect> penjualanList = [];
-  List<PenjualanSelect> filteredPenjualan = [];
+  List<Persediaan> penjualanList1 = [];
+  List<PersediaanSelect> penjualanList = [];
+  List<PersediaanSelect> filteredPenjualan = [];
 
   void updatePenjualan1(List data) {
     penjualanList1 = [];
     for (var item in data) {
-      penjualanList1.add(Penjualan.fromMap(item));
+      penjualanList1.add(Persediaan.fromMap(item));
     }
     penjualanList.sort(
         (a, b) => (a.tahun * 12 + a.bulan).compareTo((b.tahun * 12 + b.bulan)));
@@ -23,7 +23,7 @@ class PenjualanController extends GetxController {
     penjualanList = [];
     filteredPenjualan = [];
     for (var item in data) {
-      penjualanList.add(PenjualanSelect.fromMap(item));
+      penjualanList.add(PersediaanSelect.fromMap(item));
     }
     penjualanList.sort(
         (a, b) => (a.tahun * 12 + a.bulan).compareTo((b.tahun * 12 + b.bulan)));
