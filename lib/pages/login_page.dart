@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:path/path.dart';
 import 'package:persediaan_barang/pages/foundation_page.dart';
 
 class LoginPage extends StatefulWidget {
@@ -15,10 +16,11 @@ final _controllerPassword = TextEditingController();
 
 const user = {'username': 'admin', 'password': 'admin12345'};
 
-void login() {
+void login(BuildContext context) {
   if (_controllerUsername.text == user['username'] &&
       _controllerPassword.text == user['password']) {
-    Get.to(() => FoundationPage());
+    Navigator.pushReplacement(
+        context, MaterialPageRoute(builder: (context) => FoundationPage()));
   } else {
     Get.snackbar(
       "GAGAL",
@@ -67,7 +69,7 @@ class _LoginPageState extends State<LoginPage> {
                     minimumSize:
                         MaterialStateProperty.all(Size(Get.width, 40))),
                 onPressed: () {
-                  login();
+                  login(context);
                 },
                 child: const Text('MASUK'))
           ],

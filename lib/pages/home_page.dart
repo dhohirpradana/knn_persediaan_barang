@@ -32,6 +32,7 @@ class _HomePageState extends State<HomePage> {
           ? int.parse(_controllerK.text)
           : 1);
       knnControler.resetHasil();
+      // _controller.clear();
     }
   }
 
@@ -68,23 +69,12 @@ class _HomePageState extends State<HomePage> {
               child: Center(
                 child: GetBuilder<KController>(
                   builder: (controller) => Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       TextFormField(
                         autofocus: false,
                         controller: _controllerK,
-                        validator: (value) {
-                          if (kController.k.toString() == value) {
-                            return '    tidak ada perubahan nilai k';
-                          } else if (value == '') {
-                            return '    tidak boleh kosong';
-                          } else if (value == '0') {
-                            return '    tidak boleh nol';
-                          } else if (value![0] == '0') {
-                            return '    tidak boleh berawalah nol';
-                          }
-                          return null;
-                        },
-                        onChanged: (v) => updateK(),
+                        onChanged: (_) => updateK(),
                         keyboardType: TextInputType.number,
                         textInputAction: TextInputAction.done,
                         decoration: const InputDecoration(
@@ -204,7 +194,8 @@ class _HomePageState extends State<HomePage> {
                         _controller.text != '0') {
                       if (selectedStokController.bulan != _controller.text ||
                           selectedStokController.selectedStok !=
-                              _selectedStok) {
+                              _selectedStok ||
+                          kController.k.toString() != _controllerK.text) {
                         selectedStokController.updateSelected(
                             _selectedStok, _controller.text);
                         knnControler.init(
