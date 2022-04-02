@@ -47,12 +47,12 @@ class KNNController extends GetxController {
   ed(int bulanKedepan) {
     edList = [];
     for (var i = 0; i < filteredPenjualan.length - 6; i++) {
-      final penjualan = filteredPenjualan;
-      final ed = sqrt(pow(penjualan[i].qty - targetList[0], 2) +
-          pow(penjualan[i + 1].qty - targetList[1], 2) +
-          pow(penjualan[i + 2].qty - targetList[2], 2) +
-          pow(penjualan[i + 3].qty - targetList[3], 2) +
-          pow(penjualan[i + 4].qty - targetList[4], 2));
+      final persediaan = filteredPenjualan;
+      final ed = sqrt(pow(persediaan[i].qty - targetList[0], 2) +
+          pow(persediaan[i + 1].qty - targetList[1], 2) +
+          pow(persediaan[i + 2].qty - targetList[2], 2) +
+          pow(persediaan[i + 3].qty - targetList[3], 2) +
+          pow(persediaan[i + 4].qty - targetList[4], 2));
       edList.add({'index': i, 'ed': ed});
     }
     sort(bulanKedepan);

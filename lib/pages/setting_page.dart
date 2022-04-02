@@ -59,7 +59,7 @@ class SettingPage extends StatelessWidget {
                                         return AlertDialog(
                                           title: const Text("Hapus?"),
                                           content: const Text(
-                                              "Data penjualan yang berelasi juga akan TERHAPUS"),
+                                              "Data persediaan yang berelasi juga akan TERHAPUS"),
                                           actions: [
                                             TextButton(
                                               child: const Text("Batal"),
@@ -72,7 +72,7 @@ class SettingPage extends StatelessWidget {
                                               onPressed: () {
                                                 Get.back();
                                                 _helper.delete(
-                                                    'penjualan',
+                                                    'persediaan',
                                                     'idStok',
                                                     stokController
                                                         .stokList[index].id!);

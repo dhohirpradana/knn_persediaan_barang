@@ -13,7 +13,7 @@ class AboutPage extends StatelessWidget {
         title: const Text('TENTANG'),
       ),
       body: const Center(
-        child: Text('Prediksi persediaan barang'),
+        child: Text('Prediksi persediaan semen menggunakan metode KNN'),
       ),
     );
   }

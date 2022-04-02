@@ -98,7 +98,7 @@ class _TrainingPageState extends State<TrainingPage> {
                         Text(data[index].qty.toString()),
                         SizedBox(width: Get.width / 30),
                         IconButton(
-                            tooltip: 'Hapus data penjualan',
+                            tooltip: 'Hapus data persediaan',
                             onPressed: () {
                               showDialog(
                                 context: context,
@@ -106,7 +106,7 @@ class _TrainingPageState extends State<TrainingPage> {
                                   return AlertDialog(
                                     title: const Text("Hapus?"),
                                     content: const Text(
-                                        "Konfirmasi hapus data penjualan"),
+                                        "Konfirmasi hapus data persediaan"),
                                     actions: [
                                       TextButton(
                                         child: const Text("Batal"),
@@ -119,7 +119,7 @@ class _TrainingPageState extends State<TrainingPage> {
                                         onPressed: () {
                                           Get.back();
                                           final DbHelper _helper = DbHelper();
-                                          _helper.delete('penjualan', 'id',
+                                          _helper.delete('persediaan', 'id',
                                               data[index].id);
                                         },
                                       ),

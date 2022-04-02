@@ -159,7 +159,7 @@ class _HomePageState extends State<HomePage> {
                       padding: const EdgeInsets.all(10),
                       width: Get.width,
                       child: Center(
-                        child: Text('Data penjualan $stokNama kurang dari 9',
+                        child: Text('Data persediaan $stokNama kurang dari 9',
                             style: TextStyle(
                                 color: Colors.red[500],
                                 fontSize: 14,
