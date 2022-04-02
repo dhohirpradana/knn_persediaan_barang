@@ -192,15 +192,14 @@ class _HomePageState extends State<HomePage> {
                     if (_selectedStok != null &&
                         _controller.text != '' &&
                         _controller.text != '0') {
-                      if (selectedStokController.bulan != _controller.text ||
-                          selectedStokController.selectedStok !=
-                              _selectedStok ||
-                          kController.k.toString() != _controllerK.text) {
-                        selectedStokController.updateSelected(
-                            _selectedStok, _controller.text);
-                        knnControler.init(
-                            _selectedStok!, int.parse(_controller.text));
-                      }
+                      // if (selectedStokController.bulan != _controller.text ||
+                      //     selectedStokController.selectedStok !=
+                      //         _selectedStok) {
+                      selectedStokController.updateSelected(
+                          _selectedStok, _controller.text);
+                      knnControler.init(
+                          _selectedStok!, int.parse(_controller.text));
+                      // }
                     } else {
                       knnControler.resetHasil();
                     }
