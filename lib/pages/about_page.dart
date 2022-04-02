@@ -12,6 +12,9 @@ class AboutPage extends StatelessWidget {
         backgroundColor: CupertinoColors.systemPurple,
         title: const Text('TENTANG'),
       ),
+      body: const Center(
+        child: Text('Prediksi persediaan barang'),
+      ),
     );
   }
 }
