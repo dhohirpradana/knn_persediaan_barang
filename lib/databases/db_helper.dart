@@ -6,7 +6,7 @@ import 'package:persediaan_barang/getx/stok_get.dart';
 import 'package:persediaan_barang/models/persediaan.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:sqflite/sqflite.dart' as sqlite;
-import 'queries/penjualan_query.dart';
+import 'queries/persediaan_query.dart';
 import 'queries/stok_query.dart';
 import 'package:path/path.dart' as path;
 
