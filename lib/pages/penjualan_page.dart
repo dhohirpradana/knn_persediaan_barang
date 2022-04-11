@@ -2,33 +2,33 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:persediaan_barang/databases/db_helper.dart';
-import 'package:persediaan_barang/getx/persediaan_get.dart';
-import 'package:persediaan_barang/models/persediaan_select.dart';
+import 'package:persediaan_barang/getx/penjualan_get.dart';
+import 'package:persediaan_barang/pages/add_penjualan_page.dart';
 import 'package:persediaan_barang/widgets/nama_bulan.dart';
-import 'add_training_page.dart';
+import '../models/penjualan_select.dart';
 
-class TrainingPage extends StatefulWidget {
-  const TrainingPage({Key? key}) : super(key: key);
+class PenjualanPage extends StatefulWidget {
+  const PenjualanPage({Key? key}) : super(key: key);
 
   @override
-  State<TrainingPage> createState() => _TrainingPageState();
+  State<PenjualanPage> createState() => _PenjualanPageState();
 }
 
-final penjualanController = Get.put(PersediaanController());
+final penjualanController = Get.put(PenjualanController());
 
-class _TrainingPageState extends State<TrainingPage> {
+class _PenjualanPageState extends State<PenjualanPage> {
   bool isSearch = false;
   final _controller = TextEditingController();
   final DbHelper _helper = DbHelper();
 
   @override
   Widget build(BuildContext context) {
-    _helper.getDataPersediaan();
+    _helper.getDataPenjualan();
     return Scaffold(
       backgroundColor: CupertinoColors.systemGrey5,
       appBar: AppBar(
         elevation: 0,
-        backgroundColor: CupertinoColors.activeGreen,
+        backgroundColor: CupertinoColors.systemPink,
         title: (isSearch)
             ? Container(
                 width: double.infinity,
@@ -39,7 +39,7 @@ class _TrainingPageState extends State<TrainingPage> {
                 child: Center(
                   child: TextField(
                     onChanged: (value) =>
-                        penjualanController.searchPersediaan(value),
+                        penjualanController.searchPenjualan(value),
                     autofocus: true,
                     textInputAction: TextInputAction.search,
                     controller: _controller,
@@ -59,7 +59,7 @@ class _TrainingPageState extends State<TrainingPage> {
                   ),
                 ),
               )
-            : const Text('PERSEDIAAN'),
+            : const Text('PENJUALAN'),
         actions: [
           (isSearch == false)
               ? IconButton(
@@ -69,14 +69,14 @@ class _TrainingPageState extends State<TrainingPage> {
         ],
       ),
       floatingActionButton: FloatingActionButton(
-        heroTag: 'persediaanPage',
-        backgroundColor: Colors.green,
-        onPressed: () => Get.to(() => const AddTrainingPage()),
+        heroTag: 'penjualanPage',
+        backgroundColor: Colors.pink,
+        onPressed: () => Get.to(() => const AddPenjualanPage()),
         child: const Icon(CupertinoIcons.add),
       ),
-      body: GetBuilder<PersediaanController>(
+      body: GetBuilder<PenjualanController>(
         builder: (context) {
-          List<PersediaanSelect> data = penjualanController.filteredPersediaan;
+          List<PenjualanSelect> data = penjualanController.filteredPenjualan;
           return ListView.builder(
             itemCount: data.length,
             itemBuilder: (BuildContext context, index) {
@@ -99,7 +99,7 @@ class _TrainingPageState extends State<TrainingPage> {
                         Text(data[index].qty.toString()),
                         SizedBox(width: Get.width / 30),
                         IconButton(
-                            tooltip: 'Hapus data persediaan',
+                            tooltip: 'Hapus data penjualan',
                             onPressed: () {
                               showDialog(
                                 context: context,
@@ -107,7 +107,7 @@ class _TrainingPageState extends State<TrainingPage> {
                                   return AlertDialog(
                                     title: const Text("Hapus?"),
                                     content: const Text(
-                                        "Konfirmasi hapus data persediaan"),
+                                        "Konfirmasi hapus data penjualan"),
                                     actions: [
                                       TextButton(
                                         child: const Text("Batal"),
@@ -120,7 +120,7 @@ class _TrainingPageState extends State<TrainingPage> {
                                         onPressed: () {
                                           Get.back();
                                           final DbHelper _helper = DbHelper();
-                                          _helper.delete('persediaan', 'id',
+                                          _helper.delete('penjualan', 'id',
                                               data[index].id);
                                         },
                                       ),

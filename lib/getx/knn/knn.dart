@@ -5,7 +5,7 @@ import 'package:persediaan_barang/models/persediaan.dart';
 import '../k.dart';
 
 class KNNController extends GetxController {
-  final penjualanController = Get.put(PenjualanController());
+  final penjualanController = Get.put(PersediaanController());
   final kController = Get.put(KController());
   List filteredPenjualan = [];
   List targetList = [];
@@ -18,7 +18,7 @@ class KNNController extends GetxController {
     hasil = 0;
     update();
     await Future.delayed(const Duration(milliseconds: 200));
-    filteredPenjualan = penjualanController.penjualanList1
+    filteredPenjualan = penjualanController.persediaanList1
         .where((i) => i.idStok == id)
         .toList();
     if (filteredPenjualan.length > 9) {

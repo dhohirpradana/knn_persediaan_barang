@@ -3,37 +3,37 @@ import 'package:persediaan_barang/models/persediaan.dart';
 import 'package:persediaan_barang/models/persediaan_select.dart';
 import 'package:persediaan_barang/widgets/nama_bulan.dart';
 
-class PenjualanController extends GetxController {
-  List<Persediaan> penjualanList1 = [];
-  List<PersediaanSelect> penjualanList = [];
-  List<PersediaanSelect> filteredPenjualan = [];
+class PersediaanController extends GetxController {
+  List<Persediaan> persediaanList1 = [];
+  List<PersediaanSelect> persediaanList = [];
+  List<PersediaanSelect> filteredPersediaan = [];
 
-  void updatePenjualan1(List data) {
-    penjualanList1 = [];
+  void updatePersediaan1(List data) {
+    persediaanList1 = [];
     for (var item in data) {
-      penjualanList1.add(Persediaan.fromMap(item));
+      persediaanList1.add(Persediaan.fromMap(item));
     }
-    penjualanList.sort(
+    persediaanList.sort(
         (a, b) => (a.tahun * 12 + a.bulan).compareTo((b.tahun * 12 + b.bulan)));
-    filteredPenjualan = penjualanList;
+    filteredPersediaan = persediaanList;
     update();
   }
 
-  void updatePenjualan(List data) {
-    penjualanList = [];
-    filteredPenjualan = [];
+  void updatePersediaan(List data) {
+    persediaanList = [];
+    filteredPersediaan = [];
     for (var item in data) {
-      penjualanList.add(PersediaanSelect.fromMap(item));
+      persediaanList.add(PersediaanSelect.fromMap(item));
     }
-    penjualanList.sort(
+    persediaanList.sort(
         (a, b) => (a.tahun * 12 + a.bulan).compareTo((b.tahun * 12 + b.bulan)));
-    filteredPenjualan = penjualanList;
+    filteredPersediaan = persediaanList;
     update();
   }
 
-  void searchPenjualan(String text) {
+  void searchPersediaan(String text) {
     if (text.isNotEmpty) {
-      filteredPenjualan = penjualanList
+      filteredPersediaan = persediaanList
           .where((i) =>
                   bulanNama(i.bulan)
                       .toLowerCase()
@@ -44,7 +44,7 @@ class PenjualanController extends GetxController {
               )
           .toList();
     } else {
-      filteredPenjualan = penjualanList;
+      filteredPersediaan = persediaanList;
     }
     update();
   }

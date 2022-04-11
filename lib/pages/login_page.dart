@@ -36,43 +36,68 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
+      appBar: AppBar(
+        title: const Text('MASUK'),
+      ),
       backgroundColor: Colors.grey[200],
-      body: Padding(
-        padding: const EdgeInsets.all(20.0),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            TextFormField(
-              autofocus: false,
-              controller: _controllerUsername,
-              keyboardType: TextInputType.text,
-              textInputAction: TextInputAction.done,
-              decoration: const InputDecoration(
-                  prefixIcon: Icon(CupertinoIcons.person, color: Colors.grey),
-                  hintText: 'Username',
-                  border: InputBorder.none),
+      body: Stack(
+        children: [
+          Container(
+            decoration: BoxDecoration(
+              image: DecorationImage(
+                colorFilter: ColorFilter.mode(
+                    Colors.black.withOpacity(0.2), BlendMode.colorBurn),
+                image: const AssetImage("assets/image/semen.jpg"),
+                fit: BoxFit.cover,
+              ),
             ),
-            TextFormField(
-              obscureText: true,
-              autofocus: false,
-              controller: _controllerPassword,
-              keyboardType: TextInputType.text,
-              textInputAction: TextInputAction.done,
-              decoration: const InputDecoration(
-                  prefixIcon: Icon(CupertinoIcons.lock, color: Colors.grey),
-                  hintText: 'Password',
-                  border: InputBorder.none),
+          ),
+          Padding(
+            padding: const EdgeInsets.all(20.0),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                TextFormField(
+                  autofocus: false,
+                  controller: _controllerUsername,
+                  keyboardType: TextInputType.text,
+                  textInputAction: TextInputAction.done,
+                  decoration: const InputDecoration(
+                      filled: true,
+                      fillColor: Colors.white,
+                      prefixIcon:
+                          Icon(CupertinoIcons.person, color: Colors.grey),
+                      hintText: 'Username',
+                      border: InputBorder.none),
+                ),
+                const SizedBox(height: 5),
+                TextFormField(
+                  obscureText: true,
+                  autofocus: false,
+                  controller: _controllerPassword,
+                  keyboardType: TextInputType.text,
+                  textInputAction: TextInputAction.done,
+                  decoration: const InputDecoration(
+                      filled: true,
+                      fillColor: Colors.white,
+                      prefixIcon: Icon(CupertinoIcons.lock, color: Colors.grey),
+                      hintText: 'Password',
+                      border: InputBorder.none),
+                ),
+                const SizedBox(height: 10),
+                ElevatedButton(
+                    style: ButtonStyle(
+                        minimumSize:
+                            MaterialStateProperty.all(Size(Get.width, 40))),
+                    onPressed: () {
+                      login(context);
+                    },
+                    child: const Text('MASUK'))
+              ],
             ),
-            ElevatedButton(
-                style: ButtonStyle(
-                    minimumSize:
-                        MaterialStateProperty.all(Size(Get.width, 40))),
-                onPressed: () {
-                  login(context);
-                },
-                child: const Text('MASUK'))
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }

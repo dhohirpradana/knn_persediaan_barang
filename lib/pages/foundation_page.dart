@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:persediaan_barang/pages/about_page.dart';
 import 'package:persediaan_barang/pages/home_page.dart';
+import 'package:persediaan_barang/pages/penjualan_page.dart';
 import 'package:persediaan_barang/pages/setting_page.dart';
 import 'package:persediaan_barang/pages/training_page.dart';
 import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
@@ -48,6 +49,7 @@ class FoundationPage extends StatelessWidget {
   List<Widget> _buildScreens() {
     return [
       const HomePage(),
+      const PenjualanPage(),
       const TrainingPage(),
       SettingPage(),
       const AboutPage(),
@@ -63,8 +65,14 @@ class FoundationPage extends StatelessWidget {
         inactiveColorPrimary: CupertinoColors.systemGrey,
       ),
       PersistentBottomNavBarItem(
-        icon: const Icon(CupertinoIcons.list_dash),
+        icon: const Icon(CupertinoIcons.list_bullet),
         title: ("Penjualan"),
+        activeColorPrimary: CupertinoColors.systemPink,
+        inactiveColorPrimary: CupertinoColors.systemGrey,
+      ),
+      PersistentBottomNavBarItem(
+        icon: const Icon(CupertinoIcons.list_number),
+        title: ("Persediaan"),
         activeColorPrimary: CupertinoColors.systemGreen,
         inactiveColorPrimary: CupertinoColors.systemGrey,
       ),

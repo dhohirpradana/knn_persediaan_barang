@@ -4,16 +4,16 @@ import 'package:get/get.dart';
 import 'package:persediaan_barang/databases/db_helper.dart';
 import 'package:persediaan_barang/getx/knn/knn.dart';
 import 'package:persediaan_barang/getx/stok_get.dart';
-import 'package:persediaan_barang/models/persediaan.dart';
+import 'package:persediaan_barang/models/penjualan.dart';
 
-class AddTrainingPage extends StatefulWidget {
-  const AddTrainingPage({Key? key}) : super(key: key);
+class AddPenjualanPage extends StatefulWidget {
+  const AddPenjualanPage({Key? key}) : super(key: key);
 
   @override
-  State<AddTrainingPage> createState() => _AddTrainingPageState();
+  State<AddPenjualanPage> createState() => _AddPenjualanPageState();
 }
 
-class _AddTrainingPageState extends State<AddTrainingPage> {
+class _AddPenjualanPageState extends State<AddPenjualanPage> {
   final knnControler = Get.put(KNNController());
   final _jumlahController = TextEditingController();
   final _tahunController = TextEditingController();
@@ -30,7 +30,7 @@ class _AddTrainingPageState extends State<AddTrainingPage> {
 
   void insert() {
     if (_selectedStok != null && _selectedBulan != null) {
-      _helper.insertPersediaan(Persediaan(
+      _helper.insertPenjualan(Penjualan(
           bulan: _selectedBulan!,
           idStok: _selectedStok!,
           tahun: int.parse(_tahunController.text),
@@ -49,7 +49,7 @@ class _AddTrainingPageState extends State<AddTrainingPage> {
     return Scaffold(
       appBar: AppBar(
         elevation: 0,
-        backgroundColor: CupertinoColors.activeGreen,
+        backgroundColor: CupertinoColors.systemPink,
         title: const Text('TAMBAH DATA'),
       ),
       backgroundColor: CupertinoColors.systemGrey5,
@@ -150,7 +150,7 @@ class _AddTrainingPageState extends State<AddTrainingPage> {
             const SizedBox(height: 10),
             ElevatedButton(
                 style: ButtonStyle(
-                    backgroundColor: MaterialStateProperty.all(Colors.green),
+                    backgroundColor: MaterialStateProperty.all(Colors.pink),
                     minimumSize:
                         MaterialStateProperty.all(Size(Get.width, 40))),
                 onPressed: () async {

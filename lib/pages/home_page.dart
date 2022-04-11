@@ -40,174 +40,190 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    _helper.getDataPenjualan1();
+    _helper.getDataPersediaan1();
     _helper.getDataStok();
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       appBar: AppBar(
         elevation: 0,
         backgroundColor: CupertinoColors.activeBlue,
         title: const Text('HOME'),
       ),
       backgroundColor: CupertinoColors.systemGrey5,
-      body: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.end,
-          children: [
-            GetBuilder<KController>(
-              builder: (controller) => Text(
-                kController.k.toString(),
-                style: const TextStyle(fontWeight: FontWeight.bold),
+      body: Container(
+        decoration: BoxDecoration(
+          image: DecorationImage(
+            colorFilter: ColorFilter.mode(
+                Colors.black.withOpacity(0.2), BlendMode.colorBurn),
+            image: const AssetImage("assets/image/semen.jpg"),
+            fit: BoxFit.cover,
+          ),
+        ),
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.end,
+            children: [
+              GetBuilder<KController>(
+                builder: (controller) => Text(
+                  kController.k.toString(),
+                  style: const TextStyle(fontWeight: FontWeight.bold),
+                ),
               ),
-            ),
-            const SizedBox(height: 10),
-            Container(
-              width: double.infinity,
-              height: 60,
-              decoration: BoxDecoration(
-                  color: Colors.white, borderRadius: BorderRadius.circular(5)),
-              child: Center(
-                child: GetBuilder<KController>(
-                  builder: (controller) => Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      TextFormField(
-                        autofocus: false,
-                        controller: _controllerK,
-                        onChanged: (_) => updateK(),
-                        keyboardType: TextInputType.number,
-                        textInputAction: TextInputAction.done,
-                        decoration: const InputDecoration(
-                            prefixIcon: Icon(CupertinoIcons.number_square_fill,
-                                color: Colors.grey),
-                            hintText: 'Nilai K',
-                            border: InputBorder.none),
-                      ),
-                    ],
+              const SizedBox(height: 10),
+              Container(
+                width: double.infinity,
+                height: 60,
+                decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(5)),
+                child: Center(
+                  child: GetBuilder<KController>(
+                    builder: (controller) => Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        TextFormField(
+                          autofocus: false,
+                          controller: _controllerK,
+                          onChanged: (_) => updateK(),
+                          keyboardType: TextInputType.number,
+                          textInputAction: TextInputAction.done,
+                          decoration: const InputDecoration(
+                              prefixIcon: Icon(
+                                  CupertinoIcons.number_square_fill,
+                                  color: Colors.grey),
+                              hintText: 'Nilai K',
+                              border: InputBorder.none),
+                        ),
+                      ],
+                    ),
                   ),
                 ),
               ),
-            ),
-            const SizedBox(height: 10),
-            Container(
-              padding: const EdgeInsets.symmetric(horizontal: 15),
-              width: double.infinity,
-              height: 60,
-              decoration: BoxDecoration(
-                  color: Colors.white, borderRadius: BorderRadius.circular(5)),
-              child: Center(
-                child: GetBuilder<StokController>(builder: (_) {
-                  dd = stokController.stokList;
-                  return DropdownButton(
-                      hint: const Text('Pilih stok'),
-                      underline: const SizedBox(),
-                      isExpanded: true,
-                      value: _selectedStok,
-                      items: [
-                        for (var item in dd)
-                          DropdownMenuItem(
-                              child: Text(item.nama), value: item.id)
-                      ],
-                      onChanged: (value) => setState(
-                          () => _selectedStok = int.parse(value.toString())));
-                }),
-              ),
-            ),
-            const SizedBox(height: 10),
-            Container(
-              width: double.infinity,
-              height: 60,
-              decoration: BoxDecoration(
-                  color: Colors.white, borderRadius: BorderRadius.circular(5)),
-              child: Center(
-                child: TextField(
-                  keyboardType: TextInputType.number,
-                  textInputAction: TextInputAction.done,
-                  controller: _controller,
-                  decoration: const InputDecoration(
-                      suffix: Text('bulan   '),
-                      prefixIcon: Icon(CupertinoIcons.number_circle_fill,
-                          color: Colors.deepPurple),
-                      hintText: 'Prediksi untuk (bulan) kedepan',
-                      border: InputBorder.none),
+              const SizedBox(height: 10),
+              Container(
+                padding: const EdgeInsets.symmetric(horizontal: 15),
+                width: double.infinity,
+                height: 60,
+                decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(5)),
+                child: Center(
+                  child: GetBuilder<StokController>(builder: (_) {
+                    dd = stokController.stokList;
+                    return DropdownButton(
+                        hint: const Text('Pilih stok'),
+                        underline: const SizedBox(),
+                        isExpanded: true,
+                        value: _selectedStok,
+                        items: [
+                          for (var item in dd)
+                            DropdownMenuItem(
+                                child: Text(item.nama), value: item.id)
+                        ],
+                        onChanged: (value) => setState(
+                            () => _selectedStok = int.parse(value.toString())));
+                  }),
                 ),
               ),
-            ),
-            const SizedBox(height: 10),
-            GetBuilder<KNNController>(
-              builder: (context) {
-                if (knnControler.hasil == 0) {
-                  return const SizedBox();
-                } else if (knnControler.hasil == -1) {
-                  final stokNama = stokController.stokList
-                      .where((element) => element.id == _selectedStok)
-                      .toList()[0]
-                      .nama;
+              const SizedBox(height: 10),
+              Container(
+                width: double.infinity,
+                height: 60,
+                decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(5)),
+                child: Center(
+                  child: TextField(
+                    keyboardType: TextInputType.number,
+                    textInputAction: TextInputAction.done,
+                    controller: _controller,
+                    decoration: const InputDecoration(
+                        suffix: Text('bulan   '),
+                        prefixIcon: Icon(CupertinoIcons.number_circle_fill,
+                            color: Colors.deepPurple),
+                        hintText: 'Prediksi untuk (bulan) kedepan',
+                        border: InputBorder.none),
+                  ),
+                ),
+              ),
+              const SizedBox(height: 10),
+              GetBuilder<KNNController>(
+                builder: (context) {
+                  if (knnControler.hasil == 0) {
+                    return const SizedBox();
+                  } else if (knnControler.hasil == -1) {
+                    final stokNama = stokController.stokList
+                        .where((element) => element.id == _selectedStok)
+                        .toList()[0]
+                        .nama;
 
-                  return Card(
-                    child: Container(
-                      padding: const EdgeInsets.all(10),
-                      width: Get.width,
-                      child: Center(
-                        child: Text('Data persediaan $stokNama kurang dari 9',
-                            style: TextStyle(
-                                color: Colors.red[500],
-                                fontSize: 14,
-                                fontWeight: FontWeight.w500)),
-                      ),
-                    ),
-                  );
-                } else {
-                  return Card(
-                    child: Container(
-                      padding: const EdgeInsets.all(10),
-                      width: Get.width,
-                      child: Center(
-                        child: Column(
-                          children: [
-                            Text(
-                                'PREDIKSI PENJUALAN ${_controller.text} BULAN KEDEPAN',
-                                style: const TextStyle(
-                                    fontSize: 16, fontWeight: FontWeight.w500)),
-                            Text(
-                              knnControler.hasil.toString(),
-                              style: const TextStyle(
-                                  fontSize: 32, fontWeight: FontWeight.bold),
-                            ),
-                          ],
+                    return Card(
+                      child: Container(
+                        padding: const EdgeInsets.all(10),
+                        width: Get.width,
+                        child: Center(
+                          child: Text('Data persediaan $stokNama kurang dari 9',
+                              style: TextStyle(
+                                  color: Colors.red[500],
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.w500)),
                         ),
                       ),
-                    ),
-                  );
-                }
-              },
-            ),
-            const SizedBox(height: 3),
-            GetBuilder<SelectedstokController>(builder: (_) {
-              return ElevatedButton(
-                  style: ButtonStyle(
-                      minimumSize:
-                          MaterialStateProperty.all(Size(Get.width, 40))),
-                  onPressed: () {
-                    if (_selectedStok != null &&
-                        _controller.text != '' &&
-                        _controller.text != '0') {
-                      // if (selectedStokController.bulan != _controller.text ||
-                      //     selectedStokController.selectedStok !=
-                      //         _selectedStok) {
-                      selectedStokController.updateSelected(
-                          _selectedStok, _controller.text);
-                      knnControler.init(
-                          _selectedStok!, int.parse(_controller.text));
-                      // }
-                    } else {
-                      knnControler.resetHasil();
-                    }
-                    FocusScope.of(context).unfocus();
-                  },
-                  child: const Text('HITUNG'));
-            }),
-          ],
+                    );
+                  } else {
+                    return Card(
+                      child: Container(
+                        padding: const EdgeInsets.all(10),
+                        width: Get.width,
+                        child: Center(
+                          child: Column(
+                            children: [
+                              Text(
+                                  'PREDIKSI PENJUALAN ${_controller.text} BULAN KEDEPAN',
+                                  style: const TextStyle(
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.w500)),
+                              Text(
+                                knnControler.hasil.toString(),
+                                style: const TextStyle(
+                                    fontSize: 32, fontWeight: FontWeight.bold),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    );
+                  }
+                },
+              ),
+              const SizedBox(height: 3),
+              GetBuilder<SelectedstokController>(builder: (_) {
+                return ElevatedButton(
+                    style: ButtonStyle(
+                        minimumSize:
+                            MaterialStateProperty.all(Size(Get.width, 40))),
+                    onPressed: () {
+                      if (_selectedStok != null &&
+                          _controller.text != '' &&
+                          _controller.text != '0') {
+                        // if (selectedStokController.bulan != _controller.text ||
+                        //     selectedStokController.selectedStok !=
+                        //         _selectedStok) {
+                        selectedStokController.updateSelected(
+                            _selectedStok, _controller.text);
+                        knnControler.init(
+                            _selectedStok!, int.parse(_controller.text));
+                        // }
+                      } else {
+                        knnControler.resetHasil();
+                      }
+                      FocusScope.of(context).unfocus();
+                    },
+                    child: const Text('HITUNG'));
+              }),
+            ],
+          ),
         ),
       ),
     );
